@@ -1,8 +1,10 @@
 #Programming Challenge
 #Elevators in a building
 
-#Number of elevators 2
-#Number of floors 3
+#Number_of_elevators = 2
+#Number_of_floors = 3
+floors >= 1 and <= number_of_floors
+
 
 #I would first create each elevator as an object
 #elevator1
@@ -25,10 +27,14 @@
 
 
 #I would need to create an object called controller to initiate a call button to summon the elevator
+#It can't change any property of the elevators but can interact with them
 #controller
 def call ()
 
-#call button is pushed on floor 1
+#call button is pushed on floor x
 #each elevator would need to relay what floor it is currently on
 #each elevator would need to relay what status it is in
-#elevator closest to
+#elevator closest to responds
+if status = "unoccupied":
+    #will move to floor x
+    elif status =
