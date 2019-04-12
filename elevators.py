@@ -11,7 +11,7 @@ floors >= 1 and <= number_of_floors
 #properties
 #floor =
 #door = open or closed
-#status = occupied or not occupied (this would represent elevator moving or not moving)
+#status = occupied or unoccupied (this would represent elevator moving or not moving)
 #total_trips =
 #floors_traveled =
 
@@ -19,7 +19,7 @@ floors >= 1 and <= number_of_floors
 #properties
 #floor =
 #door = open or closed
-#status = occupied or not occupied
+#status = occupied or unoccupied
 #total_trips =
 #floors_traveled =
 
@@ -41,11 +41,19 @@ call_floor = input("Select the floor: ")
 #utilize if statments to prioritize which elevator responds
 #if elevator status == unoccupied and it is on the floor closest to call_floor, then elevator floor = call_floor
 #need to create a variable to determine which elevator is closer to the call_floor
-#if call_floor == 1 elevator_floor,
-#if elevator1 is on floor 2 and elevator2 is on floor 3, and the call_floor is 1, theh the logic would be
-if status == "unoccupied" and #reference logic :
-    elevator_floor = call_floor #this represents the elevator moving to the call_floor
-    elif floor == call_floor:
-        #the unoccupied elevator responds unless the other elevator is at the call floor
-else:
-    #won't move to call floor
+#if call_floor == elevator_floor and elevator_status == unoccupied, elevator1 = call_floor
+if elevator_status == occupied:
+    if elevator1_floor > call_floor or elevator1_floor < call_floor:
+        #elevator will not respond to the call
+        #total_trips will not increment
+        #floors traveled will not increment
+        #the other elevator will respond
+elevator2_floor = call_floor #this represents the elevator moving to the call_floor
+#This logic will need to be improved to scale for more than 2 elevators in alternate scenarios
+if status == "unoccupied" and elevator_floor == call_floor:
+    total_trips += 1 #increment total_trips
+    floors_traveled += 1 #increment floors_traveled
+#the occupied elevator responds if it is at the call floor
+if status == "occupied" and evelator_floor == call_floor:
+    total_trips += 1 #increment total_trips
+    floors_traveled += 1 #increment floors_traveled
