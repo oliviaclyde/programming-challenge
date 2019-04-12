@@ -50,10 +50,19 @@ if elevator_status == occupied:
         #the other elevator will respond
 elevator2_floor = call_floor #this represents the elevator moving to the call_floor
 #This logic will need to be improved to scale for more than 2 elevators in alternate scenarios
+#This is priority 1
 if status == "unoccupied" and elevator_floor == call_floor:
     total_trips += 1 #increment total_trips
     floors_traveled += 1 #increment floors_traveled
+else: #no change to elevator position
 #the occupied elevator responds if it is at the call floor
-if status == "occupied" and evelator_floor == call_floor:
+#This is priority 2
+if status == "occupied" and evalator_floor == call_floor:
     total_trips += 1 #increment total_trips
     floors_traveled += 1 #increment floors_traveled
+else: #no change to elevator position
+#need to handle maxium elevator trips and maintenance
+#when total_trips >= 100, elevator is no longer available to respond to calls
+#need to create a way to remove the elevator from
+#if total_trips >= 100, the elevator will no longer respond to call_floor
+#not sure how to break the logic here beside moving it out of bounds of the floor (making it 0)
