@@ -44,5 +44,4 @@ Rules of the Challenge:
 1. The goal of this is to design classes and their interactions. It is primarily a design exercise, not strictly a coding exercise. So if you run out of time, stub the methods and comment on how they should work.
 2. If you run out of time, focus on the features in the order they are listed as priority order
 3. Be prepared to talk about and defend your design.
-4. The code does not have to run! We’ll just assume that the time will exist to work out the
-bugs and make it actually run. So, pretend it will run, but don’t worry about actually making it run.
+4. The code does not have to run! We’ll just assume that the time will exist to work out the bugs and make it actually run. So, pretend it will run, but don’t worry about actually making it run.
