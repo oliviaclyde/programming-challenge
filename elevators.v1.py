@@ -1,128 +1,31 @@
+from utilities import components
+
 
 def main():
-    import numpy as np
-   
+    
     # Call is made to an elevator
     # Elevator responds, 
     # -Needs to increment num of trips
     # -Needs to report as it moves from floor to floor
     # -Needs to report when opens/closes doors
 
-    class Elevator():
-
-        def __init__(self, status, proximity, floor, trips, needsServicing):
-            self.status = status
-            self.proximity = proximity
-            self.floor = floor
-            self.trips = trips
-            self.needsServicing = needsServicing
-
-        def open(self):
-            print("Doors opening...")
-        
-        def close(self):
-            print("Doors closing...")
-
-        def callElevator(self, floor, direction):
-            pass
-
-        def elevatorOccupied(self):
-            pass
-
-        def countFloor(selection):
-            for i in range (1, selection+1):
-                print(i + "...")
-
-        def elevatorRunning(self):
-            print("Elevator coming...")
-            countFloor(selection)
-        
-        def numberOfTrips(self):
-            self.trips += 1
-            if self.trips >= 100:
-                self.status = "Inactive"
-                self.needsServicing = True
-                print("Elevator shutdown for servicing.")
-
+    
                     
-    elevator1 = Elevator("unoccupied", "not called", 4, 0, False)
-    elevator2 = Elevator("unoccupied", "not called", 2, 0, False)
+    elevator1 = components.Elevator("unoccupied", "not called", 4, 0, False)
+    elevator2 = components.Elevator("unoccupied", "not called", 2, 0, False)
 
 
     print(elevator1.status)
     print(elevator2.floor)
 
 
-  #------End Elevator class------#
-
-
-
-    class ElevatorController():
-        floors = 5
-        numElevators = 2
-        groundFloor = 1
-        topFloor = 5
-        
-        def __init__(self, floor):
-            self.floor = floor
-
-         # Can't go above top floor or below ground floor
-        def invalidOption(self, n):
-            if n < ElevatorController.groundFloor:
-                print("Invalid option. Please choose another floor.")
-            elif n > ElevatorController.topFloor:
-                print("Invalid option. Please choose another floor.")
-            else:
-                print("Calling elevator...")
-
-        # Find which elevator is closest to the called floor 
-        def nearestElevator(self, selection):
-            floorOptions = []
-            floorOptions.append(elevator1.floor)
-            floorOptions.append(elevator2.floor)
-            floorOptions = np.asarray(floorOptions)
-            closestFloor = (np.abs(floorOptions - selection)).argmin()
-            if floorOptions[closestFloor] == elevator1.floor:
-                print("Elevator 1 responding.") 
-                elevator1.proximity == "closest"
-            else:
-                print("Elevator 2 responding.")
-                elevator2.proximity == "closest"
-            return floorOptions[closestFloor]
-            
-            # Debug why elevator proximity when printed isn't updating 
-            # print(elevator1.proximity)
-
-        def callElevator(selection):
-            pass 
-            # Closest elevator has already been determined
-            # if elevator1.status == "unoccupied" & elevator1.proximity == "closest"
-            # Elevator responds by counting floors to the called floor 
-            # Doors open
-            # Adjust reponding elevator's status - elevator.status == "Occupied"
-            # Adjust trip count of responding elevator - elevator.numofTrips() 
-            # Adjust new resting position of responding elevator's floor - elevator.floor == selection
-
-        def selectFloor():
-            pass
-            # After the elevator has been called, this function will be used to 
-            # Detemine where the passenger wants to go 
-            # A destination floor will be selected
-            # Doors close
-            # Count floors while traveling 
-            # Doors open
-            # Update elevator.status to "unoccupied" 
-            # Update elevator.proximity to "not  called"
-            # Update elevator.trips to increment += 1 
-            # Adjust new resting position of responding elevator - elevator.floor = selection
-    
+      
     selection = int(input("Welcome. Please select a floor:   "))
-    controller = ElevatorController(selection)
-    # print(controller.invalidOption(selection))
+    controller = components.ElevatorController(selection)
+    print(controller.invalidOption(selection))
     print(controller.nearestElevator(selection))
 
 
-#----End ElevatorController class----#
 
 if __name__ == "__main__":
     main()
