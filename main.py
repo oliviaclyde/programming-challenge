@@ -1,4 +1,5 @@
-from utilities import components
+from utilities import elevator
+from utilities import elevatorController
 
 
 def main():
@@ -11,8 +12,8 @@ def main():
 
     
                     
-    elevator1 = components.Elevator("unoccupied", "not called", 4, 0, False)
-    elevator2 = components.Elevator("unoccupied", "not called", 2, 0, False)
+    elevator1 = elevator.Elevator("unoccupied", "not called", 4, 0, False)
+    elevator2 = elevator.Elevator("unoccupied", "not called", 2, 0, False)
 
 
     print(elevator1.status)
@@ -21,7 +22,7 @@ def main():
 
       
     selection = int(input("Welcome. Please select a floor:   "))
-    controller = components.ElevatorController(selection)
+    controller = elevatorController.ElevatorController(selection)
     print(controller.invalidOption(selection))
     print(controller.nearestElevator(selection))
 
