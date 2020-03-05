@@ -1,4 +1,5 @@
 import numpy as np
+from utilities import elevator
 
 class ElevatorController():
     floors = 5
@@ -6,8 +7,9 @@ class ElevatorController():
     groundFloor = 1
     topFloor = 5
     
-    def __init__(self, floor):
+    def __init__(self, floor, Elevator=0):
         self.floor = floor
+        self.Elevator = []
 
         # Can't go above top floor or below ground floor
     def invalidOption(self, n):
@@ -60,3 +62,6 @@ class ElevatorController():
         # Adjust new resting position of responding elevator - elevator.floor = selection
 
 #----End ElevatorController class----#
+
+elevator1 = elevator.Elevator("unoccupied", "not called", 4, 0, False)
+elevator2 = elevator.Elevator("unoccupied", "not called", 2, 0, False)
