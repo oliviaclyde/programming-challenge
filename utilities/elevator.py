@@ -1,10 +1,11 @@
 class Elevator():
-    def __init__(self, status, proximity, floor, trips, needsServicing):
-        self.status = status
-        self.proximity = proximity
-        self.floor = floor
-        self.trips = trips
-        self.needsServicing = needsServicing
+    def __init__(self):
+        self.status = ''
+        self.proximity = ''
+        self.floor = 1
+        self.trips = 0
+        self.needsServicing = False
+
 
     def open(self):
         print("Doors opening...")

@@ -1,5 +1,5 @@
-from utilities import elevator
-from utilities import elevatorController
+from utilities.elevator import Elevator
+from control.elevatorController import ElevatorController
 
 
 def main():
@@ -9,24 +9,23 @@ def main():
     # -Needs to increment num of trips
     # -Needs to report as it moves from floor to floor
     # -Needs to report when opens/closes doors
-
+    # Write test file for debugging
     
                     
-    elevator1 = elevator.Elevator("unoccupied", "not called", 4, 0, False)
-    elevator2 = elevator.Elevator("unoccupied", "not called", 2, 0, False)
+   controller = ElevatorController(2, 5)  
+   
+   print("Welcome.")
+   
+   print(controller.floors)
+   
+   
+   nearestElevator = ElevatorController.getNearestElevator(4)
+   
+   print(nearestElevator)
 
-
-    print(elevator1.status)
-    print(elevator2.floor)
-
+#    callElevator(nearestElevator, 4)
 
       
-    selection = int(input("Welcome. Please select a floor:   "))
-    controller = elevatorController.ElevatorController(selection)
-    print(controller.invalidOption(selection))
-    print(controller.nearestElevator(selection))
-
-
 
 if __name__ == "__main__":
     main()
