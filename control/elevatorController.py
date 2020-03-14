@@ -1,24 +1,37 @@
+# Call is made to an elevator
+    # Elevator responds, 
+    # -Needs to increment num of trips
+    # -Needs to report as it moves from floor to floor
+    # -Needs to report when opens/closes doors
+    # Write test file for debugging
+
+
+
 import numpy as np
 from utilities.elevator import Elevator
 
 class ElevatorController():
-    # groundFloor = 1
-    # topFloor = 5
-    
-    def __init__(self, numElevators, floors):
+
+    def __init__(self, numElevators, floors, groundFloor=1):
         self.floors = floors
+        self.groundFloor = groundFloor
         self.elevators = []
         for i in range(numElevators):
             self.elevators.append(Elevator())
 
+
     # Can't go above top floor or below ground floor
-    # def invalidOption(self, n):
-    #     if n < ElevatorController.groundFloor:
-    #         print("Invalid option. Please choose another floor.")
-    #     elif n > ElevatorController.topFloor:
-    #         print("Invalid option. Please choose another floor.")
-    #     else:
-    #         print("Calling elevator...")
+    def invalidOption(self, selection):
+        while True:
+            if selection < self.groundFloor:
+                print("Invalid option. Please choose another floor.")
+                break
+            elif selection > self.floors:
+                print("Invalid option. Please choose another floor.")
+                break
+            else:
+                print("Calling elevator...")
+                break
 
     # Find which elevator is closest to the called floor 
     def getNearestElevator(self, floor):
@@ -30,10 +43,9 @@ class ElevatorController():
         return self.elevators[elevatorIndex]
 
 
-    def callElevator(selection):
+    def callElevator(nearestElevator, selection):
         pass 
-        # Closest elevator has already been determined
-        # if elevator1.status == "unoccupied" & elevator1.proximity == "closest"
+        # if Elevator1.status == "unoccupied" & elevator1.proximity == "closest"
         # Elevator responds by counting floors to the called floor 
         # Doors open
         # Adjust reponding elevator's status - elevator.status == "Occupied"
