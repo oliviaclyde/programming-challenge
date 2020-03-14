@@ -3,28 +3,27 @@ from control.elevatorController import ElevatorController
 
 
 def main():
+   
+    numElevators = int(input("Enter how many elevators are in your building...  "))
+    floors = int(input("Enter how many floors are in your building...  "))        
     
-    # Call is made to an elevator
-    # Elevator responds, 
-    # -Needs to increment num of trips
-    # -Needs to report as it moves from floor to floor
-    # -Needs to report when opens/closes doors
-    # Write test file for debugging
+    controller = ElevatorController(numElevators, floors)  
+
+    print("Welcome.")
+    selection = int(input("Please select a floor:  "))
+    controller.invalidOption(selection)
+
+    # while True:
+    #     try:
+    #         selection = int(input("Please select a floor:  "))
+    #         break
+    #     except ValueError:
+    #         print("The input was not a valid integer.")
+   
+    #nearestElevator = controller.getNearestElevator(4)
+   
+    #print(nearestElevator)
     
-                    
-   controller = ElevatorController(2, 5)  
-   
-   print("Welcome.")
-   
-   print(controller.floors)
-   
-   
-   nearestElevator = ElevatorController.getNearestElevator(4)
-   
-   print(nearestElevator)
-
-#    callElevator(nearestElevator, 4)
-
       
 
 if __name__ == "__main__":
