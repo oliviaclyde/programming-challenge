@@ -13,6 +13,10 @@ def main():
     selection = int(input("Please select a floor:  "))
     controller.invalidOption(selection)
 
+
+    nearestElevator = controller.getNearestElevator(selection)
+    
+    
     # while True:
     #     try:
     #         selection = int(input("Please select a floor:  "))
@@ -20,8 +24,7 @@ def main():
     #     except ValueError:
     #         print("The input was not a valid integer.")
    
-    #nearestElevator = controller.getNearestElevator(4)
-   
+     
     #print(nearestElevator)
     
       

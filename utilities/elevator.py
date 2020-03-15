@@ -25,7 +25,7 @@ class Elevator():
 
     def elevatorRunning(self):
         print("Elevator coming...")
-        countFloor(selection)
+        return countFloor(selection)
     
     def numberOfTrips(self):
         self.trips += 1
