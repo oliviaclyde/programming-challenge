@@ -6,6 +6,5 @@ __pycache__/
 .pytest_*
 .vscode
 
-# test
-/tests
+
 
