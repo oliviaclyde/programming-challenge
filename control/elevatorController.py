@@ -8,6 +8,7 @@
 
 
 import numpy as np
+from time import sleep
 from utilities.elevator import Elevator
 
 class ElevatorController():
@@ -16,6 +17,7 @@ class ElevatorController():
         self.floors = floors
         self.groundFloor = groundFloor
         self.elevators = []
+        self.call = []
         for i in range(numElevators):
             self.elevators.append(Elevator())
 
@@ -23,16 +25,12 @@ class ElevatorController():
     # Can't go above top floor or below ground floor
     def invalidOption(self, selection):
         if type(selection) is not int:
-            print("Invalid option. Please choose another floor.")
             return False
         elif selection < self.groundFloor:
-            print("Invalid option. Please choose another floor.")
             return False
         elif selection > self.floors:
-            print("Invalid option. Please choose another floor.")
             return False
         else:
-            print("Calling elevator...")
             return True
 
     # Find which elevator is closest to the called floor 
@@ -43,6 +41,27 @@ class ElevatorController():
             if np.abs(elevator.floor - floor) < distance and elevator.needsServicing == False:
                 elevatorIndex = index
         return self.elevators[elevatorIndex]
+
+
+    def start(self):
+        while True:
+            print(self.call)
+            
+            currentCall = self.call
+            self.call = []
+            # Check for call
+            # Process call -> call the elevators
+            # ELevator will move the floor 
+            sleep(2)
+
+
+    def newCall(self, origin, destination):
+        if self.invalidOption(origin) == False or self.invalidOption(destination) == False or origin == destination:
+            print("Invalid selection.")
+        else:
+            print("Processing call...")
+            self.call = [origin, destination]
+
 
     def goUp(self):
         pass
@@ -65,6 +84,7 @@ class ElevatorController():
         # Adjust reponding elevator's status - elevator.status == "Occupied"
         # Adjust trip count of responding elevator - elevator.numofTrips() 
         # Adjust new resting position of responding elevator's floor - elevator.floor == selection
+
 
     def selectFloor():
         pass
