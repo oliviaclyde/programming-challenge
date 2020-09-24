@@ -5,7 +5,14 @@ class Elevator():
         self.floor = 1
         self.trips = 0
         self.needsServicing = False
+        self.destinations = []
 
+
+    def getDirection(self):
+        if destination > self.floor:
+            return 1
+        else: 
+            return -1  
 
     def open(self):
         print("Doors opening...")
@@ -15,17 +22,14 @@ class Elevator():
 
     def elevatorOccupied(self):
         setattr(Elevator, self.status, 'occupied')
-    
-    def closestElevator(self):
-        setattr(Elevator, self.proximity, 'closest')
 
-    def countFloor(selection):
-        for i in range (1, selection+1):
+    def countFloor(floor):
+        for i in range (1, (floor+1)):
             print(i + "...")
 
     def elevatorRunning(self):
         print("Elevator coming...")
-        return countFloor(selection)
+        return countFloor(floor)
     
     def numberOfTrips(self):
         self.trips += 1
