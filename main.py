@@ -31,11 +31,9 @@ def main():
         origin = int(splitSelection[0])
         destination = int(splitSelection[1]) 
         controller.newCall(origin, destination)
-        #controller.elevatorResponding(destination)
+       
 
-   
-#  Need a way to exit
-# Need to debug if a character , or = is hit in error. Throws and error in the program
+
    
 if __name__ == "__main__":
     main()
