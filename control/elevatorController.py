@@ -1,12 +1,3 @@
-# Call is made to an elevator
-    # Elevator responds, 
-    # -Needs to increment num of trips
-    # -Needs to report as it moves from floor to floor
-    # -Needs to report when opens/closes doors
-    # Write test file for debugging
-
-
-
 import numpy as np
 from time import sleep
 from utilities.elevator import Elevator
@@ -17,12 +8,12 @@ class ElevatorController():
         self.floors = floors
         self.groundFloor = groundFloor
         self.elevators = []
+        self.unprocessedCalls = []
         self.call = []
         for i in range(numElevators):
             self.elevators.append(Elevator())
+        
 
-
-    # Can't go above top floor or below ground floor
     def invalidOption(self, selection):
         if type(selection) is not int:
             return False
@@ -33,7 +24,7 @@ class ElevatorController():
         else:
             return True
 
-    # Find which elevator is closest to the called floor 
+
     def getNearestElevator(self, call):
         origin, destination = call
         elevatorIndex = 0
@@ -57,12 +48,19 @@ class ElevatorController():
         print(elevatorIndex)
         return self.elevators[elevatorIndex]
 
+    # - return nearest elevator that is moving to destination or not moving
+    # Need to get direction appended to Elevator object
+
     def start(self):
         while True:
             print(self.call)
             
             currentCall = self.call
             self.call = []
+            for call in self.unproccessedCalls:
+                self.processCall(call)
+                self.moveAllElevators()
+
             # Check for call
             # Process call -> call the elevators
             # ELevator will move the floor 
@@ -75,43 +73,27 @@ class ElevatorController():
         else:
             print("Processing call...")
             self.call = [origin, destination]
-            self.elevatorResponding()
-
+            # controller needs to spit new calls into unprocessed queue
+            self.unprocessedCalls.append(self.call)
     
-    
-    
-    
-    def elevatorResponding(self):
+        
+    def processCall(self, call):
         nearestElevator = self.getNearestElevator()
-        moveElevator(nearestElevator)
+        moveAllElevators(nearestElevator)
+    # layer in add'l logic below here
+    
 
-    def moveElevator(self, nearestElevator):
+    def moveAllElevators(self, nearestElevator):
+        pass 
+
         # figure out if elevator needs to move up or down floor
         # move elevator (floor +=1 or floor -= 1)
 
-        elevatorDirection
-        nearestElevator.floor
+        # elevatorDirection
+        # nearestElevator.floor
         
-        # elevator.elevatorRunning()
-        # elevator.countFloor()
-        # elevator.open()
-        # if Elevator1.status == "unoccupied" & elevator1.proximity == "closest"
-        # Elevator responds by counting floors to the called floor 
-        # Adjust reponding elevator's status - elevator.status == "Occupied"
-        # Adjust trip count of responding elevator - elevator.numofTrips() 
-        # Adjust new resting position of responding elevator's floor - elevator.floor == selection
+        
 
-
-        # After the elevator has been called, this function will be used to 
-        # Detemine where the passenger wants to go 
-        # A destination floor will be selected
-        # Elevator.close()
-        # Elevator.countFloors() # Count floors while traveling 
-        # Doors open
-        # Update elevator.status to "unoccupied" 
-        # Update elevator.proximity to "not  called"
-        # Update elevator.trips to increment += 1 
-        # Adjust new resting position of responding elevator - elevator.floor = selection
 
 #----End ElevatorController class----#
 
@@ -121,10 +103,12 @@ class ElevatorController():
 
 Main
 - Listens for calls
+- *Debug exiting program 
+- *Debug if invalid character is entered 
 
 Elevator
 - no logic, just properties
-- desitinations
+- destinations
 - getDirection()
     return 1 or -1 determine if destination > or < self.floor
 
@@ -148,10 +132,18 @@ def MoveAllElevators:
             move 1 floor
         if floor = destination[0]
             pop the dest
-            open doors/closedoors/etc
-            increment trips
-        increment floors
+            open doors/closedoors/etc - 
+                self.elevatorRunning(floor)
+                Self.open()
+                self.close()
+                self.elevatorOccupied();
+            increment trips - self.numberOfTrips()
+        increment floors elevator.countFloor()
         other crap
+        Update elevator.status == "Occupied"
+        Update elevator.numberOfTrips()  
+        Update elevators position - elevator.floor = destination floor
+
 
 def ProcessCall(self):
     originFloor, destinationFloor = UnprocessedCalls.pop(0)
