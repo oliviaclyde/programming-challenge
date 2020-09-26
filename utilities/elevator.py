@@ -9,10 +9,13 @@ class Elevator():
 
 
     def getDirection(self):
-        if destination > self.floor:
+        if self.destinations[0] > self.floor:
             return 1
         else: 
             return -1  
+
+    def elevatorPosition(self):
+        setattr(Elevator, self.floor, destinations[0])
 
     def open(self):
         print("Doors opening...")
@@ -22,6 +25,9 @@ class Elevator():
 
     def elevatorOccupied(self):
         setattr(Elevator, self.status, 'occupied')
+    
+    def elevatorUnoccupied(self):
+        setattr(Elevator, self.status, '')
 
     def countFloor(floor):
         for i in range (1, (floor+1)):
