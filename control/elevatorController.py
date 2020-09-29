@@ -60,9 +60,8 @@ class ElevatorController():
             currentCall = self.call
             self.call = []
             for call in self.unprocessedCalls:
-                pass
-                # self.processCall(call)
-                # self.moveAllElevators(nearestElevator)
+                self.processCall(call)
+                self.moveAllElevators(nearestElevator)
 
             # Check for call
             # Process call -> call the elevators
@@ -81,25 +80,33 @@ class ElevatorController():
     
         
     def processCall(self, call):
-        nearestElevator = self.getNearestElevator(call)
-        pass
-        
-        # originFloor, destinationFloor = UnprocessedCalls.pop(0)
-        # elevator = getNearestElevator(originFloor, destinationFloor)
-        # elevator.destinations.push(destination)
-        # elevator.destinations.push(origin)
+        originFloor, destinationFloor = self.unprocessedCalls.pop(0)
+        neartestElevator = getNearestElevator(originFloor, destinationFloor)
+        elevator.destinations.append(destination)
+        elevator.destinations.append(origin)
         # elevator.sortDestinations() # this will need to take if current floor > or < destionations
+        return neartestElevator
 
+    # should this take nearestElevator ?
+    def moveAllElevators(self, nearestElevator): 
+        for elevator in self.elevators:
+            elevatorDirection = elevator.getDirection()
 
-    def moveAllElevators(self, nearestElevator):
-        pass 
-        self.elevatorRunning()
-        self.countFloor
-        self.open()
-        self.close()
-        self.numberOfTrips()
-        self.floor 
+            if elevatorDirection == 1:
+                elevator.floor += 1
+            else:
+                elevator.floor -= 1           
 
+            if elevator.floor == destination[0]:
+                elevator.destinations.pop(0)
+                elevator.elevatorOccupied()
+                elevator.countFloor(elevator.floor)
+                elevator.open()
+                elevator.close()
+                elevator.numberOfTrips() 
+                elevator.elevatorPosition(elevator.floor)   
+                
+           
 
         # figure out if elevator needs to move up or down floor
         # move elevator (floor +=1 or floor -= 1)
