@@ -14,8 +14,8 @@ class Elevator():
         else: 
             return -1  
 
-    def elevatorPosition(self):
-        setattr(Elevator, self.floor, destinations[0])
+    def elevatorPosition(self, floor):
+        setattr(Elevator, self.floor, floor)
 
     def open(self):
         print("Doors opening...")
@@ -35,7 +35,7 @@ class Elevator():
 
     def elevatorRunning(self):
         print("Elevator coming...")
-        return countFloor(floor)
+        # return countFloor(floor)
     
     def numberOfTrips(self):
         self.trips += 1
