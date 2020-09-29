@@ -29,27 +29,29 @@ class ElevatorController():
         origin, destination = call
         elevatorIndex = 0
         distance = self.floors
-        direction = None
+        direction = 1
         if origin > destination:
             direction = -1
         else:
             direction = 1
 
         for index, elevator in enumerate(self.elevators):
-            if np.abs(elevator.floor - origin) < distance 
-                and np.abs(elevator.floor - origin) < elevatorIndex 
+            if (np.abs(elevator.floor - origin) < distance 
+                # and np.abs(elevator.floor - origin) < elevatorIndex 
                 and elevator.needsServicing == False
+                and elevator.status is not "occupied"
                 and elevator.getDirection() == direction
                 and (
                     (elevator.floor > origin and direction < 0) 
-                    or (elevator.floor < origin and direction > 0) ):
+                    or (elevator.floor < origin and direction > 0))):
                 elevatorIndex = index
-        
+                distance = np.abs(elevator.floor - origin)
         print(elevatorIndex)
         return self.elevators[elevatorIndex]
 
     # - return nearest elevator that is moving to destination or not moving
     # Need to get direction appended to Elevator object
+    # Need to append the destination floor to the elevator that is responding to the call self.floor.append(destination) - this is the floor it ends up on
 
     def start(self):
         while True:
@@ -57,9 +59,10 @@ class ElevatorController():
             
             currentCall = self.call
             self.call = []
-            for call in self.unproccessedCalls:
-                self.processCall(call)
-                self.moveAllElevators()
+            for call in self.unprocessedCalls:
+                pass
+                # self.processCall(call)
+                # self.moveAllElevators(nearestElevator)
 
             # Check for call
             # Process call -> call the elevators
@@ -78,13 +81,25 @@ class ElevatorController():
     
         
     def processCall(self, call):
-        nearestElevator = self.getNearestElevator()
-        moveAllElevators(nearestElevator)
-    # layer in add'l logic below here
-    
+        nearestElevator = self.getNearestElevator(call)
+        pass
+        
+        # originFloor, destinationFloor = UnprocessedCalls.pop(0)
+        # elevator = getNearestElevator(originFloor, destinationFloor)
+        # elevator.destinations.push(destination)
+        # elevator.destinations.push(origin)
+        # elevator.sortDestinations() # this will need to take if current floor > or < destionations
+
 
     def moveAllElevators(self, nearestElevator):
         pass 
+        self.elevatorRunning()
+        self.countFloor
+        self.open()
+        self.close()
+        self.numberOfTrips()
+        self.floor 
+
 
         # figure out if elevator needs to move up or down floor
         # move elevator (floor +=1 or floor -= 1)
