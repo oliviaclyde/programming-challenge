@@ -1,21 +1,25 @@
 class Elevator():
-    def __init__(self):
+    def __init__(self, id):
         self.status = ''
         self.proximity = ''
         self.floor = 1
         self.trips = 0
         self.needsServicing = False
         self.destinations = []
-
+        self.id = id
 
     def getDirection(self):
-        if self.destinations[0] > self.floor:
-            return 1
+        if len(self.destinations) == 0:
+            return 0
+        elif self.destinations[0] < self.floor:
+            return -1
         else: 
-            return -1  
-
-    def elevatorPosition(self, floor):
-        setattr(Elevator, self.floor, floor)
+            return 1  
+    
+    def addDestination(self, destination):
+        self.destinations.append(destination)
+        # self.destinations.sort()
+    
 
     def open(self):
         print("Doors opening...")
@@ -29,14 +33,19 @@ class Elevator():
     def elevatorUnoccupied(self):
         setattr(Elevator, self.status, '')
 
-    def countFloor(floor):
-        for i in range (1, (floor+1)):
-            print(i + "...")
+    def move(self):
+        self.floor += self.getDirection()
+        print(f"Elevator {self.id}: moving to {self.floor}.")
+        
 
-    def elevatorRunning(self):
-        print("Elevator coming...")
-        # return countFloor(floor)
-    
+    def report(self):
+        if len(self.destinations) > 0 and self.floor == self.destinations[0]:
+            self.destinations.pop(0)
+            # self.elevatorOccupied()
+            self.open()
+            self.close()
+            self.numberOfTrips() 
+
     def numberOfTrips(self):
         self.trips += 1
         if self.trips >= 100:
