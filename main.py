@@ -21,12 +21,12 @@ def main():
     controllerThread.start()
 
 
-    endProgram = None
-
-
     print("At any time create a call by entering origin and destination. (Ex. 1,3) To quit, type Y")
-    while endProgram is not "y" or "Y":
+    while True:
         selection = input()
+        if selection == "y" or selection == "Y":
+            controller.end()
+            break
         splitSelection = selection.split(',')
         origin = int(splitSelection[0])
         destination = int(splitSelection[1]) 
